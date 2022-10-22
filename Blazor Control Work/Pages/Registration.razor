@@ -1,0 +1,32 @@
+﻿@page "/Registration"
+
+@using Blazor_Control_Work.Data
+
+<h1 align="center">Registration</h1>
+<style>
+    input {
+        clear: left;
+        float: left;
+        margin: 25px;
+    }
+</style>
+<form>
+    <input type="text" name="Name" @bind-value="@user.Name" placeholder="Name"/>
+    <input type="text" name="Surname"  @bind-value="@user.Surname" placeholder="Surname"/>
+    <input type="text" name="Email"  @bind-value="@user.Email" placeholder="Email"/>
+    <input type="text" name="Login"  @bind-value="@user.Login" placeholder="Login"/>
+    <input type="text" name="Password"  @bind-value="@user.Password" placeholder="Password"/>
+    <input type="text" name="Password0" @bind-value="@Password0" placeholder="Repeat Password"/>
+</form>
+
+<input type="button" onclick="    document.location = '/'; @Submit()" name="submit" value="Submit"/>
+
+
+@code {
+    User user = new User();
+    string Password0;
+    public void Submit()
+    {
+        MongoExamples.AddToDB(user);
+    }
+}
